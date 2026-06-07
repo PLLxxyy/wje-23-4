@@ -3,16 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import api from '@/utils/api'
 import { CUISINE_OPTIONS } from '@/utils/format'
 import { Plus, Trash2, ChefHat } from 'lucide-react'
+import type { CreateRecipeRequest, Recipe } from '@shared/types'
 
-interface IngredientInput {
-  name: string
-  amount: string
-}
-
-interface StepInput {
-  content: string
-  photo?: string
-}
+type IngredientInput = CreateRecipeRequest['ingredients'] extends (infer T)[] ? T : never
+type StepInput = CreateRecipeRequest['steps'] extends (infer T)[] ? T : never
 
 export default function AddRecipe() {
   const navigate = useNavigate()
@@ -62,16 +56,17 @@ export default function AddRecipe() {
     e.preventDefault()
     setSubmitting(true)
     try {
-      const res = await api.post('/recipes', {
+      const data: CreateRecipeRequest = {
         title,
         cuisine,
         difficulty,
         cookTime: Number(cookTime),
-        photo,
-        description,
+        photo: photo || undefined,
+        description: description || undefined,
         ingredients: ingredients.filter(i => i.name),
         steps: steps.filter(s => s.content)
-      })
+      }
+      const res = await api.post<Recipe>('/recipes', data)
       navigate(`/recipes/${res.data.id}`)
     } finally {
       setSubmitting(false)

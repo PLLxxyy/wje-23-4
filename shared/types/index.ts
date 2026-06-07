@@ -43,6 +43,10 @@ export interface Review {
   createdAt: string
 }
 
+export interface ReviewWithRecipe extends Review {
+  recipeTitle: string
+}
+
 export interface Favorite {
   id: number
   userId: number
@@ -56,4 +60,52 @@ export interface Follow {
   followingId: number
   followingName: string
   createdAt: string
+}
+
+export interface LoginRequest {
+  username: string
+  password: string
+}
+
+export interface RegisterRequest {
+  username: string
+  password: string
+  name: string
+}
+
+export interface AuthResponse {
+  token: string
+  user: User
+}
+
+export interface CreateRecipeRequest {
+  title: string
+  cuisine: string
+  difficulty: string
+  cookTime: number
+  photo?: string
+  description?: string
+  ingredients?: Array<{ name: string; amount: string }>
+  steps?: Array<{ content: string; photo?: string }>
+}
+
+export interface CreateReviewRequest {
+  rating: number
+  comment?: string
+}
+
+export interface CreateFollowRequest {
+  username: string
+}
+
+export interface FavoriteStatusResponse {
+  isFavorited: boolean
+}
+
+export interface SuccessResponse {
+  success: boolean
+}
+
+export interface ErrorResponse {
+  error: string
 }

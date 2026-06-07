@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import api from '@/utils/api'
-import { Recipe } from '@/types'
+import type { Recipe, CreateRecipeRequest } from '@shared/types'
 
 export function useRecipes() {
   const [recipes, setRecipes] = useState<Recipe[]>([])
@@ -9,15 +9,15 @@ export function useRecipes() {
   const fetchRecipes = useCallback(async () => {
     setLoading(true)
     try {
-      const res = await api.get('/recipes')
+      const res = await api.get<Recipe[]>('/recipes')
       setRecipes(res.data)
     } finally {
       setLoading(false)
     }
   }, [])
 
-  const createRecipe = async (data: any) => {
-    const res = await api.post('/recipes', data)
+  const createRecipe = async (data: CreateRecipeRequest) => {
+    const res = await api.post<Recipe>('/recipes', data)
     setRecipes(prev => [res.data, ...prev])
     return res.data
   }

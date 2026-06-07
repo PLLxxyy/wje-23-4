@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import api from '@/utils/api'
-import { Recipe, Review, Follow } from '@/types'
+import type { Recipe, ReviewWithRecipe, Follow } from '@shared/types'
 import { User, ChefHat, Star, Heart, Users } from 'lucide-react'
 
 export default function Profile() {
   const [myRecipes, setMyRecipes] = useState<Recipe[]>([])
-  const [myReviews, setMyReviews] = useState<Review[]>([])
+  const [myReviews, setMyReviews] = useState<ReviewWithRecipe[]>([])
   const [following, setFollowing] = useState<Follow[]>([])
   const [loading, setLoading] = useState(true)
 

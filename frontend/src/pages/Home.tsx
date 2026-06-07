@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useRecipes } from '@/hooks/useRecipes'
 import DifficultyBadge from '@/components/DifficultyBadge'
-import { Recipe } from '@/types'
+import type { Recipe } from '@shared/types'
 import { Clock, ChefHat, SlidersHorizontal } from 'lucide-react'
 import { CUISINE_OPTIONS } from '@/utils/format'
 

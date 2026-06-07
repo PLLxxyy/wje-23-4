@@ -12,6 +12,6 @@
     "resolveJsonModule": true,
     "moduleResolution": "node"
   },
-  "include": ["*.ts", "routes/**/*.ts"],
+  "include": ["*.ts", "routes/**/*.ts", "../shared/**/*.ts"],
   "exclude": ["node_modules"]
 }

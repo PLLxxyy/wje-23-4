@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import api from '@/utils/api'
 import StarRating from '@/components/StarRating'
 import DifficultyBadge from '@/components/DifficultyBadge'
-import { Recipe, Ingredient, Step, Review } from '@/types'
+import type { Recipe, Ingredient, Step, Review } from '@shared/types'
 import { ArrowLeft, Clock, Heart, ShoppingCart, ChefHat, Star, User } from 'lucide-react'
 
 export default function RecipeDetail() {
