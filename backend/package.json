@@ -2,8 +2,8 @@
   "name": "pdd-169-backend",
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon server.ts",
-    "start": "ts-node server.ts",
+    "dev": "nodemon --watch server.ts --watch routes --watch ../shared --exec ts-node server.ts",
+    "start": "node dist/backend/server.js",
     "build": "tsc",
     "init-db": "ts-node init-db.ts"
   },
